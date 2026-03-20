@@ -475,3 +475,11 @@ textarea {
     background-color: #5c636a;
     transform: translateY(-1px);
 }
+
+/* Estilos para la tabla de libros en la página de catálogo */
+.tabla-scroll {
+    max-height: 420px;
+    overflow-y: auto;
+    border-radius: 12px;
+    margin-top: 15px;
+}

@@ -84,7 +84,7 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <button type="submit">Filtrar</button>
             <a class="btn-limpiar" href="libros.php">Limpiar</a>
         </form>
-
+    <div class="tabla-scroll">
         <table>
             <thead>
                 <tr>
@@ -115,7 +115,7 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endif; ?>
             </tbody>
         </table>
-
+    </div>
         <div class="acciones-inferiores">
             <a class="btn-secundario" href="dashboard.php">Volver al panel</a>
             <a class="btn-secundario salir" href="../logout.php">Cerrar sesión</a>

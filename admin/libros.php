@@ -147,19 +147,20 @@ if (isset($_GET["mensaje"])) {
             <button type="submit">Filtrar</button>
             <a class="btn-limpiar" href="libros.php">Limpiar</a>
         </form>
-
+        
+      <div class="tabla-scroll">
         <table>
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Edición</th>
-                    <th>Año</th>
-                    <th>Categoría</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>   
-                </tr>
-            </thead>
+                <thead>
+                    <tr>
+                       <th>Título</th>
+                       <th>Autor</th>
+                       <th>Edición</th>
+                       <th>Año</th>
+                       <th>Categoría</th>
+                       <th>Estado</th>
+                       <th>Acciones</th>   
+                    </tr>
+                </thead>
             <tbody>
                 <?php if (count($libros) > 0): ?>
                     <?php foreach ($libros as $libro): ?>
@@ -183,7 +184,7 @@ if (isset($_GET["mensaje"])) {
                 <?php endif; ?>
             </tbody>
         </table>
-
+      </div>
         <div class="acciones-inferiores">
             <a class="btn-secundario" href="agregar_libro.php">Agregar libro</a>
             <a class="btn-secundario" href="dashboard.php">Volver al panel</a>
