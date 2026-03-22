@@ -1,11 +1,13 @@
 <?php
+// Este archivo permite modificar la información de un libro ya registrado.
+// Se protege esta página para que solo el administrador tenga acceso.
 require_once "../includes/auth_admin.php";
 require_once "../includes/conexion.php";
 
 $mensaje = "";
 $color = "";
 
-// Verificar si se recibió el id del libro
+// Se valida que se haya recibido el identificador del libro a editar. Si no, se redirige al listado.
 if (!isset($_GET["id"]) || empty($_GET["id"])) {
     header("Location: libros.php");
     exit();
@@ -13,25 +15,25 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
 
 $id = $_GET["id"];
 
-// Consultar categorías
+// Se obtienen las categorías para mostrarlas en el formulario de edición.
 $sql_categorias = "SELECT * FROM categorias ORDER BY nombre ASC";
 $stmt_categorias = $conexion->prepare($sql_categorias);
 $stmt_categorias->execute();
 $categorias = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
 
-// Buscar datos actuales del libro
+// Se buscan los datos actuales del libro seleccionado. 
 $sql_libro = "SELECT * FROM libros WHERE id = :id LIMIT 1";
 $stmt_libro = $conexion->prepare($sql_libro);
 $stmt_libro->bindParam(":id", $id);
 $stmt_libro->execute();
 $libro = $stmt_libro->fetch(PDO::FETCH_ASSOC);
 
-// Si no existe el libro, volver
+// Si el libro no existe, se regresa al listado principal.
 if (!$libro) {
     header("Location: libros.php");
     exit();
 }
-
+// Si el libro no existe, se regresa al listado principal.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = trim($_POST["titulo"]);
     $autor = trim($_POST["autor"]);
@@ -48,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mensaje = "El año de publicación no es válido.";
         $color = "red";
     } else {
+        // Si el formulario fue enviado, se capturan los nuevos datos del libro.
         $sql_update = "UPDATE libros 
                        SET titulo = :titulo,
                            autor = :autor,
@@ -67,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_update->bindParam(":categoria_id", $categoria_id);
         $stmt_update->bindParam(":descripcion", $descripcion);
         $stmt_update->bindParam(":id", $id);
-
+        // Si la actualización es exitosa, se redirige al listado con mensaje de confirmación.
         if ($stmt_update->execute()) {
             header("Location: libros.php?mensaje=actualizado");
             exit();

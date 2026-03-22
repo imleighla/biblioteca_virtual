@@ -1,4 +1,4 @@
-/* Archivo de estilos CSS para el formulario de inicio de sesión y el panel de administración */
+/* Hoja de estilos principal del sistema Biblioteca Virtual */
 
 /* Importación de la fuente Inter desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
@@ -14,7 +14,7 @@ body {
     justify-content: center;
     min-height: 100vh;
 }
-
+/* Contenedor principal utilizado en formularios y vistas */
 .contenedor {
     width: 100%;
     max-width: 400px;
