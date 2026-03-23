@@ -1,19 +1,20 @@
 <?php
+// Catálogo de libros disponible para los usuarios del sistema.
 require_once "../includes/auth_user.php";
 require_once "../includes/conexion.php";
 
-// Obtener categorías para el filtro
+// Se obtienen las categorías para usarlas como filtro de consulta.
 $sql_categorias = "SELECT * FROM categorias ORDER BY nombre ASC";
 $stmt_categorias = $conexion->prepare($sql_categorias);
 $stmt_categorias->execute();
 $categorias = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
 
-// Capturar filtros
+// Se capturan los valores ingresados por el usuario en los filtros.
 $busqueda = isset($_GET["busqueda"]) ? trim($_GET["busqueda"]) : "";
 $categoria_id = isset($_GET["categoria_id"]) ? trim($_GET["categoria_id"]) : "";
 $anio = isset($_GET["anio"]) ? trim($_GET["anio"]) : "";
 
-// Consulta base
+// Consulta base para mostrar el catálogo con la categoría asociada a cada libro.
 $sql = "SELECT libros.*, categorias.nombre AS categoria
         FROM libros
         INNER JOIN categorias ON libros.categoria_id = categorias.id
@@ -21,7 +22,7 @@ $sql = "SELECT libros.*, categorias.nombre AS categoria
 
 $params = [];
 
-// Filtro de búsqueda por título o autor
+// Se aplica búsqueda por título, autor o edición.
 if (!empty($busqueda)) {
     $sql .= " AND (
         libros.titulo LIKE :busqueda 
@@ -31,13 +32,13 @@ if (!empty($busqueda)) {
     $params[":busqueda"] = "%" . $busqueda . "%";
 }
 
-// Filtro por categoría
+// Se filtra por categoría si el usuario selecciona una.
 if (!empty($categoria_id)) {
     $sql .= " AND libros.categoria_id = :categoria_id";
     $params[":categoria_id"] = $categoria_id;
 }
 
-// Filtro por año
+// Se filtra por año de publicación cuando se proporciona ese dato.
 if (!empty($anio)) {
     $sql .= " AND libros.anio_publicacion = :anio";
     $params[":anio"] = $anio;
@@ -66,7 +67,7 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <div class="contenedor contenedor-tabla">
         <h2>Catálogo de Libros</h2>
-
+        <!-- Formulario de búsqueda y filtros del catálogo -->
         <form method="GET" class="form-filtros">
             <input type="text" name="busqueda" placeholder="Buscar por título, autor o edición" value="<?php echo htmlspecialchars($busqueda); ?>">
 
@@ -84,7 +85,8 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <button type="submit">Filtrar</button>
             <a class="btn-limpiar" href="libros.php">Limpiar</a>
         </form>
-
+    <!-- Tabla del catálogo con scroll interno para una mejor visualización -->
+    <div class="tabla-scroll">
         <table>
             <thead>
                 <tr>
@@ -115,7 +117,7 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endif; ?>
             </tbody>
         </table>
-
+    </div>
         <div class="acciones-inferiores">
             <a class="btn-secundario" href="dashboard.php">Volver al panel</a>
             <a class="btn-secundario salir" href="../logout.php">Cerrar sesión</a>

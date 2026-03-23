@@ -1,3 +1,4 @@
+<!-- Página principal del sistema Biblioteca Virtual -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
+    <!-- Sección de presentación general del proyecto -->
     <div class="contenedor inicio-contenedor">
         <div class="inicio-badge">Proyecto Final PHP y MySQL</div>
 
@@ -16,7 +18,7 @@
             Sistema web para la gestión y consulta de libros, desarrollado con PHP, MySQL,
             HTML5, CSS3 y JavaScript.
         </p>
-
+        <!-- Tarjetas informativas que explican las funciones de administrador y usuario -->
         <div class="info-inicio">
             <div class="mini-card">
                 <h3>Administrador</h3>
@@ -28,7 +30,7 @@
                 <p>Consulta libros disponibles y utiliza búsqueda por título, autor, categoría o año.</p>
             </div>
         </div>
-
+        <!-- Accesos principales al inicio de sesión y al registro -->
         <div class="acciones-inferiores">
             <a class="btn-secundario" href="login.php">Iniciar sesión</a>
             <a class="btn-secundario" href="registro.php">Registrarse</a>
