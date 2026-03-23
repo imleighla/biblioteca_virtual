@@ -1,4 +1,6 @@
 <?php
+// Panel principal del usuario con acceso al catálogo de libros.
+// Se verifica que solo los usuarios autenticados con rol usuario entren aquí.
 require_once "../includes/auth_user.php";
 ?>
 

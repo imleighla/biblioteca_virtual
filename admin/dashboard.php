@@ -1,4 +1,6 @@
 <?php
+// Panel principal del administrador con acceso rápido a la gestión de libros.
+// Se verifica que solo el administrador pueda entrar a esta página.-  
 require_once "../includes/auth_admin.php";
 ?>
 
@@ -19,7 +21,7 @@ require_once "../includes/auth_admin.php";
         <p class="descripcion-panel">
             Desde este panel puedes gestionar los libros registrados en el sistema.
         </p>
-
+        <!-- Tarjetas principales con accesos rápidos del administrador -->
         <div class="tarjetas-panel">
             <div class="tarjeta">
                 <h3>Gestión de libros</h3>
