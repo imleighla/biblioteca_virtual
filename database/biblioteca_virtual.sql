@@ -64,7 +64,7 @@ CREATE TABLE `libros` (
 --
 -- Volcado de datos para la tabla `libros`
 --
-
+-- Los libros con año de publicación '0000' representan obras clásicas sin fecha específica o con fecha desconocida. 
 INSERT INTO `libros` (`id`, `titulo`, `autor`, `edicion`, `anio_publicacion`, `estado`, `categoria_id`, `descripcion`, `fecha_registro`) VALUES
 (1, 'Cien años de soledad', 'Gabriel García Márquez', 'Editorial Sudamericana', '1967', 'disponible', 1, 'Novela emblemática del realismo mágico latinoamericano.', '2026-03-20 01:02:54'),
 (2, 'Don Quijote de la Mancha', 'Miguel de Cervantes', 'Alfaguara', '0000', 'prestado', 1, 'Clásico de la literatura española sobre las aventuras de un caballero idealista.', '2026-03-20 01:02:54'),
